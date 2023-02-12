@@ -19,19 +19,14 @@ const ChatBenevole = (props) => {
 
   const handleBenevoleSubmit = (e) => {
     e.preventDefault();
-    props.item(UsernameBenevole);
-    props.item2(MessageBenevole);
+    //props.item(UsernameBenevole);
+    props.item(MessageBenevole);
 
   }
 
     return (
+      <div>
         <form method ='post' onSubmit={handleBenevoleSubmit}>
-            <input
-          type="text"
-          placeholder="Benevole"
-          value={UsernameBenevole}
-          onChange={handleChangeUsername}
-        />
             <input
           type="text"
           placeholder="Message"
@@ -40,6 +35,10 @@ const ChatBenevole = (props) => {
         />
             <button type='submit'>Add</button>
         </form>
+
+        <p>{props.MessageBenevole}</p>
+      </div>
+      
     );
 }
 
