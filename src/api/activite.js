@@ -1,10 +1,6 @@
 const express = require('express');
 const mysql = require('mysql');
 const cors = require ('cors');
-const { default: PostForm } = require('./PostForm');
-import PostForm from './PostForm';
-
-
 const app = express();
 const port = process.env.PORT || 8080
 
@@ -31,7 +27,7 @@ const corsOptions ={
 app.use(cors(corsOptions));
 
 // JSON body parser, there is no `extended` option here
-app.use(express.json({ limit: "20mb" }));
+app.use(express.json());
 
 // URL-encoded body parser
 app.use(express.urlencoded({ limit: "20mb", extended: true }));
@@ -44,9 +40,9 @@ app.get('/activite', function(req, res, next){
 });
 
 app.post('/creerActivite', (req, res) => {
-    const { nomEvent, description, tarif, platform, lieu, LienZoom } = req.body;
-    const sql = 'INSERT INTO activite (nomEvent, description, tarif, platform, lieu, LienZoom) VALUES (?, ?, ?, ?, ?, ?)';
-    connection.query(sql, [nomEvent, description, tarif, platform, lieu, LienZoom], (err, result) => {
+    const { nomEvent, description, tarif, platforme, lieu, LienZoom } = req.body;
+    const sql = 'INSERT INTO activite (nomEvent, description, tarif, platforme, lieu, LienZoom) VALUES (?, ?, ?, ?, ?, ?)';
+    res.locals.connection.query(sql, [nomEvent, description, tarif, platforme, lieu, LienZoom], (err, result) => {
       if (err) {
         console.error('Error inserting data: ', err);
         res.status(500).send('Error inserting data');
