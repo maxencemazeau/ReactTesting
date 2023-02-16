@@ -4,13 +4,7 @@ import { useState } from 'react';
 
 const ChatBenevole = (props) => {
 
-  const [UsernameBenevole, setUsernameBenevole] = useState('');
   const [MessageBenevole, setMessageBenevole] = useState('');
-
-  const handleChangeUsername = (e) => {
-    setUsernameBenevole(e.target.value);
-
-  }
 
   const handleChangeMessage = (e) => {
 
@@ -19,7 +13,6 @@ const ChatBenevole = (props) => {
 
   const handleBenevoleSubmit = (e) => {
     e.preventDefault();
-    //props.item(UsernameBenevole);
     props.item(MessageBenevole);
 
   }

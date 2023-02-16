@@ -1,33 +1,51 @@
-import React, { useState, useEffect } from 'react';
-import ChatBenevole from './components/chatBenevole';
-import ChatMessage from './components/ChatMessage';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css"
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 
-const Chat = () => {
-  
-  const [messages, setMessages] = useState([]);
-  
+import Chat from './components/chat'
+import Activite from "./Activite";
+import CreerActivite from "./CreerActivite";
+import Test from './components/test';
 
-  const message = (item) => {
-    setMessages((prevState)=> {
-      return[...prevState, item];
-    })
+export default function App() {
 
-    console.log(item);
-  }
-
+ 
   return (
-    <div>
-        <ul>
-        {messages.map((message, index) => (
-          <li key={index}>
-            <strong>{message}:</strong> {message.item}
-          </li>
-        ))}
-      </ul>
-      <ChatBenevole item={message}/>
-    </div> 
+    <div className="App">
+      <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/Activite">Activite</Link>
+            </li>
+            <li>
+              <Link to="/CreerActivite">Créer une activite</Link>
+            </li>
 
+          <li> <Link to="/Test">Test</Link></li>
+          </ul>
+        </nav>
+
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Routes>
+          <Route path="/Activite" element={<Activite/>}>
+          </Route>
+          <Route path="/CreerActivite" element={<CreerActivite/>}>
+          </Route>
+          <Route path="/Test" element={<Test />}></Route>
+        </Routes>
+      </div>
+    </Router>
+    </div>
+    
   );
-};
+}
 
-export default Chat;
