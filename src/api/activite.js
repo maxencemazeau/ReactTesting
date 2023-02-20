@@ -21,6 +21,7 @@ app.use(function(req, res, next){
 });
 const corsOptions ={
     origin:'*', 
+    method : 'GET,PUT,POST,DELETE,OPTIONS',
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
@@ -40,9 +41,9 @@ app.get('/activite', function(req, res, next){
 });
 
 app.post('/creerActivite', (req, res) => {
-    const { nomEvent, description, tarif, platforme, lieu, LienZoom } = req.body;
-    const sql = 'INSERT INTO activite (nomEvent, description, tarif, platforme, lieu, LienZoom) VALUES (?, ?, ?, ?, ?, ?)';
-    res.locals.connection.query(sql, [nomEvent, description, tarif, platforme, lieu, LienZoom], (err, result) => {
+    const { nomEvent, description, tarif, platforme, lieu, lienZoom } = req.body;
+    const sql = 'INSERT INTO activite (nomEvent, description, tarif, platforme, lieu, lienZoom) VALUES (?, ?, ?, ?, ?, ?)';
+    res.locals.connection.query(sql, [nomEvent, description, tarif, platforme, lieu, lienZoom], (err, result) => {
       if (err) {
         console.error('Error inserting data: ', err);
         res.status(500).send('Error inserting data');
@@ -52,3 +53,16 @@ app.post('/creerActivite', (req, res) => {
       res.send('Data inserted');
     });
   });
+
+  app.delete('/deleteActivite/:id', (req, res) => {
+  const id = req.params.id;
+  const sql = `DELETE FROM activite WHERE id = ?`;
+  res.locals.connection.query(sql, [id], (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send('Error deleting event');
+    } else {
+      res.send(`Activite with ID ${id} deleted successfully`);
+    }
+  });
+});

@@ -3,20 +3,13 @@ import React, { useState } from 'react'
 
 export default function PostForm(){
 
-   /* const [nomEvent, setNomEvent] = useState('');
-    const [description, setDescription] = useState('');
-    const [tarif, setTarif] = useState('');
-    const [platform, setPlatform] = useState('');
-    const [lieu, setLieu] = useState('');
-    const [lienZoom, setLienZoom] = useState(''); */
-
     const [eventData, setEventData] = useState({
         nomEvent: '',
         description: '',
         tarif: '',
         platforme: '',
         lieu: '',
-        LienZoom: ''
+        lienZoom: ''
     });
 
 
@@ -29,7 +22,7 @@ export default function PostForm(){
             tarif: '',
             platforme: '',
             lieu: '',
-            LienZoom: ''
+            lienZoom: ''
           })
              
         
@@ -44,7 +37,7 @@ export default function PostForm(){
       <input type="text" value={eventData.tarif} onChange={(event) => setEventData({...eventData, tarif: event.target.value})} />
       <input type="text" value={eventData.platforme} onChange={(event) => setEventData({...eventData, platforme: event.target.value})} />
       <input type="text" value={eventData.lieu} onChange={(event)=> setEventData({...eventData, lieu: event.target.value})} />
-      <input type="text" value={eventData.LienZoom} onChange={(event)=> setEventData({...eventData, LienZoom: event.target.value})} /> 
+      <input type="text" value={eventData.lienZoom} onChange={(event)=> setEventData({...eventData, lienZoom: event.target.value})} /> 
       <button type="submit">ssss</button>     
       </form>
             </div>

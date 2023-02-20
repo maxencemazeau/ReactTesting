@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Component, useState, state } from "react";
 import axios from "axios";
+import { act } from "react-dom/test-utils";
 
 export default class Activite extends Component {
 
@@ -21,13 +22,22 @@ export default class Activite extends Component {
   })
 }
 
+  deleteActivite = (id) =>{
+  const ident = id;
+  axios.delete(`http://localhost:8080/deleteActivite/${ident}`)
+  .then(res => console.log('Supprimer'))
+   
+  } 
+
+
 
 
 render(){
   const {activite} = this.state
   return (
     <div className="App">
-      <ul>{activite.map(activites=> <li key={activites.id}>{activites.nomEvent}</li>)}</ul>
+      <ul>{activite.map(activites=> <li key={activites.id}>{activites.nomEvent}
+        <button onClick={()=> this.deleteActivite(activites.id)}>Delete</button></li>)}</ul>
 
       
     </div>
