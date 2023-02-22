@@ -1,6 +1,5 @@
 import React from "react";
 import logo from "./logo.svg";
-import "./App.css";
 import { Component, useState, state } from "react";
 import axios from "axios";
 import { act } from "react-dom/test-utils";

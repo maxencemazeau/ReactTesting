@@ -21,8 +21,7 @@ export default function PostForm(){
             description: '',
             tarif: '',
             platforme: '',
-            lieu: '',
-            lienZoom: ''
+            lieu: ''
           })
              
         
@@ -37,7 +36,7 @@ export default function PostForm(){
       <input type="text" value={eventData.tarif} onChange={(event) => setEventData({...eventData, tarif: event.target.value})} />
       <input type="text" value={eventData.platforme} onChange={(event) => setEventData({...eventData, platforme: event.target.value})} />
       <input type="text" value={eventData.lieu} onChange={(event)=> setEventData({...eventData, lieu: event.target.value})} />
-      <input type="text" value={eventData.lienZoom} onChange={(event)=> setEventData({...eventData, lienZoom: event.target.value})} /> 
+      
       <button type="submit">ssss</button>     
       </form>
             </div>

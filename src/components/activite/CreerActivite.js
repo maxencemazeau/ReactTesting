@@ -1,5 +1,5 @@
 import React from "react";
-import PostForm from "./api/PostForm";
+import PostForm from "../../api/PostForm";
 
 export default function CreerActivite(){
 

@@ -41,9 +41,9 @@ app.get('/activite', function(req, res, next){
 });
 
 app.post('/creerActivite', (req, res) => {
-    const { nomEvent, description, tarif, platforme, lieu, lienZoom } = req.body;
-    const sql = 'INSERT INTO activite (nomEvent, description, tarif, platforme, lieu, lienZoom) VALUES (?, ?, ?, ?, ?, ?)';
-    res.locals.connection.query(sql, [nomEvent, description, tarif, platforme, lieu, lienZoom], (err, result) => {
+    const { nomEvent, description, tarif, platforme, lieu } = req.body;
+    const sql = 'INSERT INTO activite (nomEvent, description, tarif, platforme, lieu) VALUES (?, ?, ?, ?, ?)';
+    res.locals.connection.query(sql, [nomEvent, description, tarif, platforme, lieu], (err, result) => {
       if (err) {
         console.error('Error inserting data: ', err);
         res.status(500).send('Error inserting data');
@@ -66,3 +66,30 @@ app.post('/creerActivite', (req, res) => {
     }
   });
 });
+
+app.get('/chat', function(req, res, next){ 
+  res.locals.connection.query('Select * from chat', function(error, results, fields){
+      if (error) throw error;
+      res.json(results);
+  })
+});
+
+app.post('/creerChat', (req, res) => {
+  const dateDebut = new Date();
+  const sql = 'INSERT INTO chat (dateDebut) VALUES (?)';
+  res.locals.connection.query(sql, [dateDebut], (err, result) => {
+    if (err) {
+      console.error('Error inserting data: ', err);
+      res.status(500).send('Error inserting data');
+      return;
+    }
+    console.log('Data inserted');
+    res.send('Data inserted');
+  });
+});
+
+app.get('/discussion', (req, res) =>{
+  res.locals.connection.query('Select * from discussion INNER JOIN chat on chat.id = discussion.idChat where idChat = chat.id');
+  if (error) throw error;
+  res.json(results);
+})
